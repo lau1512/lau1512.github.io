@@ -1,1 +1,41 @@
-"Hello World" 
+<html>
+    <head>
+        <title>K_P calculator</title>
+    </head>
+    <body>
+        <button onclick="add()" style="margin: 1rem">Add person</button>
+        <button onclick="calc()" style="margin: 1rem">Udregn Kp</button>
+        <p id="result"></p>
+        <div id="time_arr" style="margin-left: 1rem">
+            <input type="text" class="inp">
+        </div>
+        <script>
+            function add(){
+                document.getElementById("time_arr").innerHTML += '<br><input type="text" class="inp">';
+            }
+            function calc(){
+                var times = document.getElementsByClassName("inp");
+                var avg = 0;
+                var kp = 0;
+                Array.prototype.forEach.call(times, function(el) {
+                    console.log(el.value);
+                    avg += parseInt(el.value);
+                });
+                avg = avg/times.length;
+                var diff = 0;
+                Array.prototype.forEach.call(times, function(el) {
+                    diff = parseInt(el.value)-avg;
+                    kp += Math.pow(diff,2);
+                    //kp += time.value^2
+                });
+                document.getElementById("result").innerText = "Kp: "+kp;
+
+            }
+        </script>
+    </body>
+    <style>
+    input{
+        margin-top: 0.2rem;
+    }
+    </style>
+</html>
